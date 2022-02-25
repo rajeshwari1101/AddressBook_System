@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddressBookSystem 
+namespace AddressBookSystem
 {
     internal class AddressBook
     {
@@ -16,7 +16,24 @@ namespace AddressBookSystem
             contacts = new Dictionary<string, Contact>();
         }
 
+        //Method Used To Create Contacts
         public void CreateContact()
+        {
+            Contact tempContact = new Contact();
+            tempContact.GetUserInfo();
+            string name = tempContact.GetName();
+            if (contacts.ContainsKey(name) is false)
+            {
+                contacts.Add(name, tempContact);
+            }
+            else
+            {
+                Console.WriteLine("erorr");
+            }
+        }
+
+        //Method Used To Add Contacts
+        public void AddContacts()
         {
             Contact tempContact = new Contact();
             tempContact.GetUserInfo();
@@ -34,7 +51,9 @@ namespace AddressBookSystem
         public void Display()
         {
             foreach (string name in contacts.Keys)
+            {
                 contacts[name].Display();
+            }
         }
     }
 }
