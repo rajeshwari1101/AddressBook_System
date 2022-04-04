@@ -25,7 +25,7 @@ namespace AddressBookSystem
             bool flag = false;
             do
             {
-                Console.WriteLine("1. Create contacts \n2. Add contact \n3. Edit contact \n4. Delete Contact \n5. Add Multiple Contacts \n6. Display contacts in Addressbook \n7. Search using filter \n8. Sort by name \n9. Exit");
+                Console.WriteLine("1. Create contacts \n2. Add contact \n3. Edit contact \n4. Delete Contact \n5. Add Multiple Contacts \n6. Display contacts in Addressbook \n7. Search using filter \n8. Sort by name \n9. Sort by city,state or Zip \n10. Exit");
                 Console.Write("\nEnter Number to Execute the Address book Program : ");
                 int option = Convert.ToInt32(Console.ReadLine());
 
@@ -81,6 +81,10 @@ namespace AddressBookSystem
                         break;
 
                     case 9:
+                        SortByCityStateOrZip();
+                        break;
+
+                    case 10:
                         Console.WriteLine("If You Want To Exit Then Press Enter");
                         flag = true;
                         Console.ReadKey();
@@ -233,6 +237,54 @@ namespace AddressBookSystem
             foreach (KeyValuePair<string, Contact> name in contacts.OrderBy(e => e.Key))
             {
                 Console.WriteLine($"\nKey:{name.Key} \nValue:{name.Value.ToString()}");
+            }
+        }
+
+        //Creating method to sort by city,state or zip
+        public void SortByCityStateOrZip()
+        {
+            Console.WriteLine("\n1. Sort by city \n2. Sort by state  \n3. Sort by Zip");
+            Console.WriteLine("Enter the choice:");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Sorting by city");
+                    foreach (KeyValuePair<string, Contact> name in contacts.OrderBy(e => e.Value.City))
+                    {
+                        Console.WriteLine($"\nValue:{name.Value.ToString()}");
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Sorting by state");
+                    foreach (KeyValuePair<string, Contact> name in contacts.OrderBy(e => e.Value.State))
+                    {
+                        Console.WriteLine($"\nValue:{name.Value.ToString()}");
+                    }
+                    break;
+                case 3:
+                    Console.WriteLine("Sorting by Zip");
+                    foreach (KeyValuePair<string, Contact> name in contacts.OrderBy(e => e.Value.Zip))
+                    {
+                        Console.WriteLine($"\nValue:{name.Value.ToString()}");
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Enter valid choice..");
+                    break;
+
+            }
+
+        }
+
+        public void ReadorWriteContact()
+        {
+            Console.WriteLine("\n1. Read the contact \n2. Write the contact");
+            Console.WriteLine("Enter the choice:");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            if (choice == 1)
+            {
+                //
             }
         }
     }
