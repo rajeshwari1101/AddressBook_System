@@ -25,7 +25,7 @@ namespace AddressBookSystem
             bool flag = false;
             do
             {
-                Console.WriteLine("1. Create contacts \n2. Add contact \n3. Edit contact \n4. Delete Contact \n5. Add Multiple Contacts \n6. Display contacts in Addressbook \n7. Search using filter \n8. Sort by name \n9. Sort by city,state or Zip \n10. Exit");
+                Console.WriteLine("1. Create contacts \n2. Add contact \n3. Edit contact \n4. Delete Contact \n5. Add Multiple Contacts \n6. Display contacts in Addressbook \n7. Search using filter \n8. Sort by name \n9. Sort by city,state or Zip \n10.Read as CSV File \n11.Read as JSON File  \n12. Exit");
                 Console.Write("\nEnter Number to Execute the Address book Program : ");
                 int option = Convert.ToInt32(Console.ReadLine());
 
@@ -85,6 +85,16 @@ namespace AddressBookSystem
                         break;
 
                     case 10:
+                        Console.WriteLine("Reading contacts as csv file");
+                        CSVFile();
+                        break;
+
+                    case 11:
+                        Console.WriteLine("Reading contacts as JSON file");
+                        JSONFile();
+                        break;
+
+                    case 12:
                         Console.WriteLine("If You Want To Exit Then Press Enter");
                         flag = true;
                         Console.ReadKey();
@@ -282,9 +292,38 @@ namespace AddressBookSystem
             Console.WriteLine("\n1. Read the contact \n2. Write the contact");
             Console.WriteLine("Enter the choice:");
             int choice = Convert.ToInt32(Console.ReadLine());
-            if (choice == 1)
+            string path = @"D:\RFP109\NewAddressBook\NewAddressBook\NewAddressBook\TextFile1.txt";
+
+        }
+
+        //Creating method to read addressbook as csv file
+        public void CSVFile()
+        {
+
+            string csvPath = @"D:\RFP109\NewAddressBook\NewAddressBook\NewAddressBook\CSV.txt";
+            using (var stream = new StreamWriter(csvPath))
             {
-                //
+                using (var writer = new CsvWriter(stream, CultureInfo.InvariantCulture))
+                {
+                    writer.WriteRecordsAsync(contacts);
+                }
+            }
+        }
+
+        //Creating method to read the addressbook as json file
+        public void JSONFile()
+        {
+
+            JsonSerializer serializer = new JsonSerializer();
+            string jsonFile = @"D:\RFP109\NewAddressBook\NewAddressBook\NewAddressBook\JSON.txt";
+            using (StreamWriter sw = new StreamWriter(jsonFile))
+            {
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, contacts);
+                }
+                string txt = File.ReadAllText(jsonFile);
+                Console.WriteLine(jsonFile);
             }
         }
     }

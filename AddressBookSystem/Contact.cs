@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace AddressBookSystem
 {
+
+    [Serializable]
     internal class Contact
     {
         //Initialising Variables For User Details
