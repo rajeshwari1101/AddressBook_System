@@ -11,7 +11,8 @@ namespace AddressBookSystem
         static void Main(string[] args)
         {
             Console.WriteLine("====Welcome To Address Book====");
-            Start.Starts();
+            AddressBookLibrary bookLibrary = new AddressBookLibrary();
+            bookLibrary.AddressBookMenu();
             Console.ReadLine();
         }
 
