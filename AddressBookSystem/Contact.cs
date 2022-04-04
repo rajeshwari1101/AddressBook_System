@@ -57,5 +57,15 @@ namespace AddressBookSystem
         {
             return FirstName + " " + LastName;
         }
+
+        //Creating override equal method
+        public override bool Equals(object obj)
+        {
+            if (!(obj.GetType() is Contact))
+                return false;
+            else if (GetName() == ((Contact)obj).GetName())
+                return true;
+            return false;
+        }
     }
 }

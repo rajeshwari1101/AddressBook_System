@@ -38,15 +38,14 @@ namespace AddressBookSystem
         public void AddContacts()
         {
             tempContact.GetUserInfo();
-            string name = tempContact.GetName();
-            if (contacts.ContainsKey(name) is false)
+            if (contacts.Any(e => e.Value.Equals(tempContact)) is false)
             {
-                contacts.Add(name, tempContact);
+                contacts.Add(tempContact.GetName(), tempContact);
                 Console.WriteLine("Successfully Added A New Contact!!!");
             }
             else
             {
-                Console.WriteLine("erorr");
+                Console.WriteLine("Contact already exist...");
             }
 
         }
@@ -89,7 +88,7 @@ namespace AddressBookSystem
                 Console.WriteLine("Name does not exist");
         }
 
-        //Method Used To Add Multiple Contact
+
         public void AddMultiple()
         {
             Console.WriteLine("Enter no of contacts to add");
@@ -104,6 +103,7 @@ namespace AddressBookSystem
 
 
         //Method Used To Display The Contacts
+
         public void Display()
         {
             foreach (string name in contacts.Keys)

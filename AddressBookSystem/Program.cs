@@ -12,6 +12,7 @@ namespace AddressBookSystem
         {
             Console.WriteLine("====Welcome To Address Book====");
             Start.Starts();
+            Console.ReadLine();
         }
 
     }
